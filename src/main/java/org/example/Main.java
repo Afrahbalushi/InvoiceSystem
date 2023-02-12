@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+
+import static java.util.stream.IntStream.range;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -41,6 +44,9 @@ public class Main {
 
                                 Boolean inv = true;
                                 while (inv) {
+                                    System.out.println("Enter Invoice NO.: ");
+                                    invoices.invNO = scanner.nextInt();
+
                                     System.out.println("Enter Name:");
                                     invoices.costumerName = scanner.next();
 
@@ -251,6 +257,10 @@ public class Main {
 
                     Boolean inv = true;
                     while (inv) {
+
+                        System.out.println("Enter Invoice NO.: ");
+                        invoices.invNO = scanner.nextInt();
+
                         System.out.println("Enter Name:");
                         invoices.costumerName = scanner.next();
 
@@ -299,16 +309,48 @@ public class Main {
                     break;
                 case 4:
 
-                    
+                    System.out.println("Statistics:");
+                    System.out.println("Number of Items: " + items.itemList.size());
+                    System.out.println("Number of Invoices: " + invoices.invoiceList.size());
+                    int sum = IntStream.of((int) items.unitPrice).sum();
+                    System.out.println("Total Sales: "+ sum);
 
                     break;
                 case 5:
 
+                    for(int i=0; i < invoices.invoiceList.size();i++){
+                        System.out.println("Invoice NO.: " + invoices.invNO);
+                        System.out.println("Customer Name: "+ invoices.costumerName);
+                        System.out.println("Customer Pone: "+ invoices.phone);
+                        System.out.println("Invoice Date: "+ invoices.date);
+                        System.out.println("Balance: "+ invoices.balance);
+
+
+                    }
+
                     break;
                 case 6:
 
+                    System.out.println("Enter Invoice NO to search");
+                    int invoNO = scanner.nextInt();
+
+                    if(invoNO == invoices.invNO){
+                        System.out.println("Invoice NO.: " + invoices.invNO);
+                        System.out.println("Customer Name: "+ invoices.costumerName);
+                        System.out.println("Customer Pone: "+ invoices.phone);
+                        System.out.println("Invoice Date: "+ invoices.date);
+                        System.out.println("Balance: "+ invoices.balance);
+                        System.out.println("Item Name: " + items.itemName);
+                        System.out.println("Item ID: " + items.itemId);
+                        System.out.println("Item Price: " + items.unitPrice);
+                        System.out.println("Item Quantity: " + items.quantity);
+                        System.out.println("Item Quantity Amount: " + items.qtyAmount);
+                    }
+
                     break;
                 case 7:
+
+                   
 
                     break;
                 case 8:

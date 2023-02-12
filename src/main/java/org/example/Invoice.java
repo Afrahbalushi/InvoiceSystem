@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Invoice implements Serializable {
+    int invNO;
 
     String costumerName;
     int phone;
