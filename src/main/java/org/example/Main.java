@@ -350,12 +350,19 @@ public class Main {
                     break;
                 case 7:
 
-                   
+
 
                     break;
                 case 8:
-                    System.out.println("Goodbye..Thank you!!");
-                    loop = false;
+                    System.out.println("Are you sure you want to exit? If yes, program ends? y/n");
+                    String select = scanner.next();
+                    if(select.equals("y") || select.equals("Y")){
+                        System.out.println("Goodbye..Thank you!!");
+                        loop = false;
+                    }else{
+                        loop = true;
+                    }
+
 
                     break;
 
