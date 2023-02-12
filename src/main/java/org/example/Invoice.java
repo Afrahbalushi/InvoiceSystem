@@ -1,8 +1,9 @@
 package org.example;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Invoice {
+public class Invoice implements Serializable {
 
     String costumerName;
     int phone;

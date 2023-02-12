@@ -1,8 +1,10 @@
 package org.example;
 
 
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class Main {
@@ -160,14 +162,82 @@ public class Main {
 
                         switch (option2){
                             case 1:
+                                Boolean itm = true;
+                                while (itm) {
+                                    System.out.println("\nITEM DETAILS");
+                                    System.out.println("__________________\n");
 
-                                
+                                    System.out.println("Enter Item ID:");
+                                    items.itemId = scanner.nextInt();
+
+                                    System.out.println("Enter Item Name:");
+                                    items.itemName = scanner.next();
+
+                                    System.out.println("Enter Unit Price:");
+                                    items.unitPrice = scanner.nextDouble();
+
+                                    System.out.println("Enter Quantity:");
+                                    items.quantity = scanner.nextInt();
+
+                                    items.qtyAmount = items.unitPrice * items.quantity;
+                                    System.out.println("The QTY Price is: " + items.qtyAmount);
+
+
+                                    System.out.println("Do you want to add more items? y/n");
+                                    String ans1 = scanner.next();
+                                    if (ans1.equals("y") || ans1.equals("Y")) {
+                                        itm = true;
+                                    } else {
+                                        try{
+                                            FileOutputStream file = new FileOutputStream("invoice.txt", true);
+                                            ObjectOutputStream out = new ObjectOutputStream(file);
+                                            out.writeObject(items);
+                                            out.close();
+                                            file.close();
+                                            System.out.println("serialized and saved");
+
+                                        }catch (Exception e){
+                                            e.printStackTrace();
+
+                                        }
+                                        itm = false;
+                                    }
+                                    items.itemList.add(items);
+                                }
+
                                 break;
                             case 2:
+
+                                for(int i=0 ; i <items.itemList.size();i++) {
+                                    String remove = items.itemList.remove(i).toString();
+                                    System.out.println(remove);
+                                }
                                 break;
                             case 3:
+
+                                System.out.println("Enter item name:");
+                                items.itemName = scanner.next();
+
+                                if(items.itemName.equals(items.itemName)){
+                                    System.out.println("Enter item price");
+                                    items.unitPrice = scanner.nextDouble();
+                                    items.itemList.add(items);
+
+                                }else{
+                                    System.out.println("Item not found");
+                                }
+
                                 break;
                             case 4:
+
+                                for(int i=0; i < items.itemList.size();i++){
+                                    System.out.println("Item Name: " + items.itemName);
+                                    System.out.println("Item ID: " + items.itemId);
+                                    System.out.println("Item Price: " + items.unitPrice);
+                                    System.out.println("Item Quantity: " + items.quantity);
+                                    System.out.println("Item Quantity Amount: " + items.qtyAmount);
+                                }
+
                                 break;
                             case 5:
                                 loop2 = false;
@@ -179,8 +249,57 @@ public class Main {
                     break;
                 case 3:
 
+                    Boolean inv = true;
+                    while (inv) {
+                        System.out.println("Enter Name:");
+                        invoices.costumerName = scanner.next();
+
+
+                        System.out.println("Enter Phone Number:");
+                        invoices.phone = scanner.nextInt();
+
+
+                        System.out.println("Enter Invoice Date:");
+                        invoices.date = scanner.next();
+
+                        System.out.println("Enter Number of Items:");
+                        invoices.numberOfItems = scanner.nextInt();
+
+                        System.out.println("Enter Total Amount:");
+                        invoices.totalAmount = scanner.nextDouble();
+
+                        System.out.println("Enter Paid Amount:");
+                        invoices.paidAmount = scanner.nextDouble();
+
+                        invoices.balance = invoices.totalAmount - invoices.paidAmount;
+                        System.out.println("The Balance is: " + invoices.balance);
+
+                        System.out.println("Do you want to add more invoices? y/n");
+                        String ans = scanner.next();
+                        if (ans.equals("y") || ans.equals("Y")) {
+                            inv = true;
+                        } else {
+                            try{
+                                FileOutputStream file = new FileOutputStream("invoice.txt", true);
+                                ObjectOutputStream out = new ObjectOutputStream(file);
+                                out.writeObject(invoices);
+                                out.close();
+                                file.close();
+                                System.out.println("serialized and saved");
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+
+                            }
+                            inv = false;
+                        }
+                        invoices.invoiceList.add(invoices);
+                    }
+
                     break;
                 case 4:
+
+                    
 
                     break;
                 case 5:
